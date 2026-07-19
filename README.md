@@ -89,5 +89,4 @@ flash:search`). Simply querying a model with the `:search` suffix activates Goog
 
 ## Support
 
-For issues, questions, or updates, join our **[Discord Server](https://discord.gg/b9atsJE
-mAj)**.
+For issues, questions, or updates, join our **[Discord Server](https://discord.gg/b9atsJEmAj)**.
