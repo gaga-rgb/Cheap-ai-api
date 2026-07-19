@@ -55,7 +55,7 @@ For complete API documentation, SDK integration guides, supported parameters, an
 amples (Python, Node.js, cURL, etc.), please refer to our official platform documentation
 :
 
-👉 **[View API Documentation & Usage Instructions](https://ai.nikkco.org/)** *(Check the 
+👉 **[View API Documentation & Usage Instructions](https://ai.nikkco.org/pricing)** *(Check the 
 Docs/API section on our platform)*                                                       
 
 ---
