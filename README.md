@@ -1,7 +1,6 @@
 # Cheap Ai Api
 
-A hosted OpenAI-compatible and Google Developer API-compatible gateway for Google's Gemin
-i, Gemma, Imagen, OpenAI GPT, DeepSeek, and Anthropic Claude AI models.
+A hosted OpenAI-compatible and Google Developer API-compatible gateway for Google's Gemini, Gemma, Imagen, OpenAI GPT, DeepSeek, Qwen and Claude AI models.
                                                                                          
 ## 🚀 API Access & Free Credits
 
