@@ -1,4 +1,4 @@
-# Gemini AI Cloud
+# Cheap Ai Api
 
 A hosted OpenAI-compatible and Google Developer API-compatible gateway for Google's Gemin
 i, Gemma, Imagen, OpenAI GPT, DeepSeek, and Anthropic Claude AI models.
