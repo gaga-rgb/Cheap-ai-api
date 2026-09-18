@@ -174,9 +174,14 @@ published rate.** Models in the `-paid` group need a paid API key and carry a
 smaller discount on the Gemini entries (about 40%); the GPT models in that group
 are at the same ~90% as the rest.
 
-| Model | Input | Output | Cached |
+| Model | Input | Output | Cached input |
 |---|---|---|---|
-| `gpt-5.6-luna-paid` | $0.02 | $0.12 | — |
+| `gpt-5.6-luna-paid` | $0.02 | $0.12 | $0.002 |
+| `gpt-5.4-mini-paid` | $0.075 | $0.45 | $0.0075 |
+| `gpt-5.6-terra-paid` | $0.20 | $1.20 | $0.02 |
+| `gpt-5.4-paid` | $0.25 | $1.50 | $0.025 |
+| `gpt-5.6-sol-paid` | $0.40 | $2.00 | $0.04 |
+| `gpt-5.5-paid` | $0.50 | $3.00 | $0.05 |
 | `qwen3.6-plus` | $0.05 | $0.30 | — |
 | `glm-4.7` | $0.06 | $0.22 | $0.011 |
 | `gemini-2.5-flash-paid` | $0.18 | $1.50 | — |
@@ -187,7 +192,17 @@ shows per-model cost and token statistics, and the
 [Rankings](https://newapi.apizio.com/rankings) board publishes live latency,
 throughput and success rates.
 
-> Prices above were checked on 2026-09-18 and change as upstream costs move.
+> **This table can be out of date — treat the website as the source of truth.**
+> Rates move whenever upstream costs move, and this README is updated by hand, so
+> it can lag. The always-current list is the Model Square pricing page:
+> **https://newapi.apizio.com/pricing** — it carries every model, cached-input
+> rates, per-group pricing and long-context tiers. Check it there before you
+> budget anything. Table above last checked 2026-09-18.
+
+> **GPT models are tiered by context length.** Above 272K input tokens the rate
+> steps up: `gpt-5.6-luna-paid` goes to $0.04 / $0.18, `gpt-5.4-paid` to
+> $0.50 / $2.25 and `gpt-5.5-paid` to $1.00 / $4.50. The Model Square lists both
+> tiers per model.
 
 ### How that compares
 
