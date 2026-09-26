@@ -16,8 +16,9 @@
 -->
 
 Apizio is a hosted AI gateway with an **OpenAI-compatible API**. Change one base
-URL and reach **51 models** from OpenAI, Google, Alibaba, Zhipu, Meta, Mistral,
-DeepSeek, xAI, Moonshot and Cohere — on one key, one balance and one bill.
+URL and reach **60 models** from OpenAI, Google, Alibaba, Zhipu, DeepSeek,
+Moonshot, Meta, Mistral, xAI, Cohere, NVIDIA, MiniMax and more — on one key, one
+balance and one bill.
 
 **New accounts get $5 in free credits.**
 
@@ -95,7 +96,7 @@ adapter, no code rewrite.
 
 ## Why route through a gateway
 
-- **One key for 51 models.** Instead of holding accounts with OpenAI, Google,
+- **One key for 60 models.** Instead of holding accounts with OpenAI, Google,
   Alibaba and Zhipu, keep one credential and one prepaid balance.
 - **Swap models without touching code.** Change the `model` string and redeploy
   nothing. Useful when one provider has an outage or a price change lands.
@@ -118,12 +119,11 @@ adapter, no code rewrite.
 
 | Endpoint | Format | Notes |
 |---|---|---|
-| `POST /v1/chat/completions` | OpenAI | All 51 models |
-| Anthropic-format endpoints | Anthropic | Available on the Qwen 3.5–3.8 models |
+| `POST /v1/chat/completions` | OpenAI | All 60 models |
+| `POST /v1/images/generations` | OpenAI | `gpt-image-2-paid` |
 
-**Authentication.** Send `Authorization: Bearer <TOKEN>`. Anthropic-formatted
-endpoints accept `x-api-key` instead. Create and scope tokens (by model, group,
-IP and rate limit) on the Tokens page of the console.
+**Authentication.** Send `Authorization: Bearer <TOKEN>`. Create and scope
+tokens (by model, group, IP and rate limit) on the Tokens page of the console.
 
 **Supported parameters:** `temperature`, `top_p`, `max_tokens`,
 `frequency_penalty`, `presence_penalty`, `stop`, `seed`, `n`, `stream`,
@@ -134,28 +134,43 @@ IP and rate limit) on the Tokens page of the console.
 
 ## Models
 
-51 models are live. Browse the [Model Square](https://newapi.apizio.com/pricing)
+60 models are live. Browse the [Model Square](https://newapi.apizio.com/pricing)
 for the authoritative list, current prices and per-model notes — the catalogue
 moves, so this README lists families rather than pinning versions.
 
 **OpenAI** — `gpt-5.6-terra-paid`, `gpt-5.6-sol-paid`, `gpt-5.6-luna-paid`,
-`gpt-5.5-paid`, `gpt-5.4-paid`, `gpt-5.4-mini-paid`, `gpt-image-2-paid`
+`gpt-5.5-paid`, `gpt-5.4-paid`, `gpt-5.4-mini-paid`, `gpt-image-2-paid`, plus
+`t/gpt-5-nano`, `t/gpt-5-4-mini`, `t/gpt-5-4-nano`, `t/gpt-4o-mini-2024-07-18`,
+`t/gpt-oss-120b`, `t/gpt-oss-20b`
 
 **Google Gemini** — `gemini-3.1-pro-preview-paid`, `gemini-3-flash-preview-paid`,
-`gemini-2.5-pro-paid`, `gemini-2.5-flash-paid`
+`gemini-2.5-pro-paid`, `gemini-2.5-flash-paid`, `t/gemini-3-1-flash-lite`,
+`t/gemini-3-5-flash-lite`
 
-**Qwen** — `qwen3.8-max`, `qwen3.7-max`, `qwen3.7-plus`, `qwen3.6-plus`,
-`qwen3.5-plus`, `qwen3.5-omni-plus`
+**Qwen** — `d/qwen3.8-2.4t-a95b`, `d/qwen3.5-397b-a17b`
 
-**Zhipu GLM** — `glm-5.3`, `glm-5.2`, `GLM-5-Turbo`, `GLM-5v-Turbo`, `glm-4.7`
+**Zhipu GLM** — `glm-5.3`, `glm-5.2`, `glm-4.7`, `GLM-5-Turbo`, `GLM-5v-Turbo`,
+`d/glm-5.3`, `d/glm-5.2`, `d/glm-5.3-flash`, `n/glm-5.3`, `n/glm-5.3-flash`
 
-**DeepSeek** — `deepseek-v4-pro-paid`
+**DeepSeek** — `deepseek-v4-pro-paid`, `d/deepseek-v4-pro`,
+`d/deepseek-v4-pro-0813`, `d/deepseek-v4.1-flash`, `d/deepseek-v4-flash`,
+`d/deepseek-v4-flash-0731`, `d/deepseek-v3.2`, `n/deepseek-v4.1-flash`,
+`t/deepseek-v3-2`
 
-**Meta, Mistral, Moonshot, xAI, Cohere** and others are served through the `t/`
-namespace (`t/llama-4-maverick`, `t/mistral-small-4`, `t/kimi-k2-5`,
-`t/grok-4-3`, …). `t/` is a routing prefix for models served from a separate
-upstream; they are normal, callable models, listed in the Model Square alongside
-the rest.
+**Moonshot / Kimi** — `d/kimi-k3`, `n/kimi-k3`, `d/kimi-k2.6`, `t/kimi-k2-5`,
+`t/kimi-k2-thinking`
+
+**Meta, Mistral, xAI, Cohere, NVIDIA, MiniMax** and others are served through the
+`t/` namespace (`t/llama-4-maverick`, `t/llama-4-scout`, `t/mistral-small-4`,
+`t/mistral-small-3-2-24b`, `t/grok-4-3`, `t/command-r7b-12-2024`,
+`t/nemotron-3-ultra`, `t/minimax-m3`, `t/sonar`, …).
+
+**Prefixes are routing, not tiers.** Some models are named with a prefix that
+records the upstream they are routed through — `t/`, `d/` and `n/`. They are
+normal, callable models: use the full name as the `model` string. They are
+listed in the Model Square alongside the unprefixed ones and priced the same way.
+(`t/auto` is the one special name — it routes a request to a suitable model
+for you.)
 
 > Some models carry a note in the Model Square such as *"Tool calling is
 > broken."* That note is per-model, not global. Check the model's card before you
@@ -182,7 +197,7 @@ are at the same ~90% as the rest.
 | `gpt-5.4-paid` | $0.25 | $1.50 | $0.025 |
 | `gpt-5.6-sol-paid` | $0.40 | $2.00 | $0.04 |
 | `gpt-5.5-paid` | $0.50 | $3.00 | $0.05 |
-| `qwen3.6-plus` | $0.05 | $0.30 | — |
+| `d/qwen3.8-2.4t-a95b` | $0.20 | $0.60 | $0.02 |
 | `glm-4.7` | $0.06 | $0.22 | $0.011 |
 | `gemini-2.5-flash-paid` | $0.18 | $1.50 | — |
 | `gemini-3.1-pro-preview-paid` | $1.00 | $7.00 | $0.10 |
@@ -197,23 +212,30 @@ throughput and success rates.
 > it can lag. The always-current list is the Model Square pricing page:
 > **https://newapi.apizio.com/pricing** — it carries every model, cached-input
 > rates, per-group pricing and long-context tiers. Check it there before you
-> budget anything. Table above last checked 2026-09-18.
+> budget anything. Table above last checked 2026-09-26.
 
 > **GPT models are tiered by context length.** Above 272K input tokens the rate
 > steps up: `gpt-5.6-luna-paid` goes to $0.04 / $0.18, `gpt-5.4-paid` to
 > $0.50 / $2.25 and `gpt-5.5-paid` to $1.00 / $4.50. The Model Square lists both
 > tiers per model.
 
+> **Some models use dynamic pricing.** `d/deepseek-v4-flash`,
+> `d/deepseek-v4-pro`, `d/deepseek-v4-pro-0813`, `d/deepseek-v4.1-flash`,
+> `n/deepseek-v4.1-flash` and `t/minimax-m3` are billed by expression rather
+> than a flat rate: the DeepSeek entries are cheaper off-peak and step up during
+> weekday peak hours (UTC), and `t/minimax-m3` has a 524K-token long-context
+> tier. The Model Square shows the currently-effective rate on each card.
+
 ### How that compares
 
 Against the providers' published list prices (or the market rate where a vendor
 does not sell the model directly). Rates are per 1M tokens, input / output.
-Checked 2026-09-18.
+Checked 2026-09-26.
 
 | Model | Apizio | Provider list | You save |
 |---|---|---|---|
 | `t/gpt-5-nano` | $0.005 / $0.04 | $0.05 / $0.40 | **90%** |
-| `t/gpt-4o-mini` | $0.015 / $0.06 | $0.15 / $0.60 | **90%** |
+| `t/gpt-4o-mini-2024-07-18` | $0.015 / $0.06 | $0.15 / $0.60 | **90%** |
 | `t/command-r7b-12-2024` | $0.0037 / $0.015 | $0.0375 / $0.15 | **90%** |
 | `t/kimi-k2-thinking` | $0.06 / $0.25 | $0.60 / $2.50 | **90%** |
 | `t/gpt-oss-120b` | $0.003 / $0.017 | $0.15 / $0.60 | **98%** |
