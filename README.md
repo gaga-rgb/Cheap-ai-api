@@ -191,16 +191,23 @@ are at the same ~90% as the rest.
 
 | Model | Input | Output | Cached input |
 |---|---|---|---|
+| `d/glm-5.3-flash` | $0.015 | $0.05 | $0.003 |
+| `d/deepseek-v4.1-flash` | $0.015 / $0.03 † | $0.06 / $0.12 † | $0.0003 / $0.0006 † |
 | `gpt-5.6-luna-paid` | $0.02 | $0.12 | $0.002 |
+| `glm-4.7` | $0.06 | $0.22 | $0.011 |
 | `gpt-5.4-mini-paid` | $0.075 | $0.45 | $0.0075 |
+| `d/glm-5.3` | $0.14 | $0.44 | $0.026 |
+| `gemini-2.5-flash-paid` | $0.18 | $1.50 | — |
 | `gpt-5.6-terra-paid` | $0.20 | $1.20 | $0.02 |
+| `d/qwen3.8-2.4t-a95b` | $0.20 | $0.60 | $0.02 |
 | `gpt-5.4-paid` | $0.25 | $1.50 | $0.025 |
+| `d/kimi-k3` | $0.30 | $1.50 | $0.03 |
 | `gpt-5.6-sol-paid` | $0.40 | $2.00 | $0.04 |
 | `gpt-5.5-paid` | $0.50 | $3.00 | $0.05 |
-| `d/qwen3.8-2.4t-a95b` | $0.20 | $0.60 | $0.02 |
-| `glm-4.7` | $0.06 | $0.22 | $0.011 |
-| `gemini-2.5-flash-paid` | $0.18 | $1.50 | — |
 | `gemini-3.1-pro-preview-paid` | $1.00 | $7.00 | $0.10 |
+
+† Off-peak / weekday peak (UTC). The same rates apply to the `n/` twin of each
+row (`n/deepseek-v4.1-flash`, `n/kimi-k3`, `n/glm-5.3`, `n/glm-5.3-flash`).
 
 You pay from a single prepaid balance that covers every provider. The console
 shows per-model cost and token statistics, and the
